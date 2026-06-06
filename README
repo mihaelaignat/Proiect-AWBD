@@ -1,0 +1,134 @@
+Descrierea proiectului:
+1. Introducere si Obiective
+Proiectul FitCore reprezinta o platforma informatica de tip Enterprise, dezvoltata utilizand framework-ul Spring Boot, destinata managementului integrat al activitatilor dintr-o retea de sali de fitness. Obiectivul principal al aplicatiei este digitalizarea interactiunii dintre administratori, antrenori si clienti, oferind instrumente avansate pentru gestionarea membrilor, planificarea antrenamentelor si monitorizarea planurilor nutritionale.
+Platforma este conceputa sa ruleze intr-un mediu securizat, oferind o interfata web moderna, dinamica si complet optimizata pentru fluxuri de lucru intense (CRUD, sortare si paginare pe seturi mari de date).
+2. Arhitectura Tehnica si Tehnologii
+Aplicatia respecta bunele practici de inginerie software, fiind structurata pe straturi clare de responsabilitate (Layered Architecture):
+•	Stratul de Prezentare (Frontend): Dezvoltat in Thymeleaf, HTML5 si Bootstrap 5, asigurand o interfata receptiva (responsive) si utilizarea componentelor moderne precum ferestrele modale pentru operatiuni rapide.
+•	Stratul de Control (Controller): Mapat cu Spring MVC pentru gestionarea cererilor HTTP si transmiterea datelor catre vederi.
+•	Stratul de Business (Service): Implementeaza regulile stricte de afaceri ale aplicatiei.
+•	Stratul de Persistenta (Data Access): Realizat cu Spring Data JPA si Hibernate, conectat la un sistem de gestiune a bazelor de date relationale (Oracle Server).
+•	Securitate: Gestionata integral prin Spring Security, cu criptare de tip BCrypt pentru parole si autorizare bazata pe roluri stricte.
+3. Entitati Principale si Modelul Conceptual
+Baza de date a sistemului este normalizata si construita in jurul urmatoarelor module interconectate:
+•	Utilizatori (Users): Membrii clubului de fitness. Fiecare utilizator are asociat un rol generic (USER, ADMIN, COACH) si poate fi alocat unui antrenor specific.
+•	Antrenori (Coaches): Personalul specializat care coordoneaza activitatea sportiva.
+•	Planuri Nutritionale (Nutrition Plans): Programe alimentare definite prin nume, numar de calorii si recomandari specifice.
+•	Grupuri de Antrenament (Workout Groups): Clase sau sesiuni organizate pe categorii.
+•	Exercitii (Exercises): Catalogul de miscari si tehnici utilizate in antrenamente.
+4. Reguli de Business si Functionalitati Cheie
+•	Securitate la Nivel de Endpoint (RBAC): Accesul la functionalitatile de adaugare, editare si stergere este restrictionat exclusiv utilizatorilor cu drepturi de ADMIN. Utilizatorii obisnuiti au drepturi stricte de vizualizare.
+•	Integritatea Datelor si Validare: Sistemul implementeaza constrangeri logice pentru a preveni alterarea datelor. De exemplu, un antrenor nu poate fi sters din sistem daca are clienti activi alocati, fortand utilizatorul sa reasocieze membrii inainte de eliminare.
+•	Performanta prin Paginare si Sortare: Pentru a asigura scalabilitatea pe baze de date mari, listele de utilizatori si planuri nutritionale folosesc paginare nativa la nivel de server si sortare dinamica pe coloane.
+•	Suita Completa de Testare: Aplicatia este validata prin teste unitare (folosind Mockito pentru izolarea stratului Service) si teste de Controller (MockMvc) pentru a garanta functionalitatea corecta a rutelor si un grad inalt de acoperire a codului (Code Coverage).
+
+Setup instructions:
+
+1. Instalam Oracle Enterprise Edition
+2. Instalam IntelliJ IDEA 2025.3.3
+3. In bara de “Search” scriem “ Services.msc”
+4. Pornim OracleVssWriterXE, OracleServiceXE, OracleOraDB21Home2TNSListener, OracleOraDB21Home2MTSRecoveryService
+5. Deschidem IntelliJ IDEA 2025.3.3 -> Open -> C:\Users\Dunduc George\Desktop\fitness
+6. Deschidem fitness -> opp -> src -> main -> java -> com.fitness.opp -> OppApplication
+7. Click dreapta -> Run (OppApplication.main
+8. Accesam http://localhost:8080/login
+9. Folosim pentru login: user: alexandra_fit / mihaela_fit / george_fit ; parola: 1234
+                         
+API DOCUMENTATION:
+
+Documentatia API (API Documentation)
+In cadrul arhitecturii MVC a platformei, comunicarea dintre interfata grafica si stratul de backend se realizeaza prin intermediul unor endpoint-uri HTTP bine definite. Aceste rute gestioneaza operatiunile de tip CRUD (Create, Read, Update, Delete) si asigura transmiterea securizata a datelor.
+Toate rutele expuse de aplicatie sunt protejate prin Spring Security, accesul la metodele de modificare (POST/DELETE) fiind conditionat de detinerea rolului de ADMIN.
+1. Modul Management Utilizatori (/users)
+1.1. Vizualizare lista paginata si sortata
+•	URL: /users/list
+•	Metoda HTTP: GET
+•	Parametri Request (Query Params):
+o	page (int, optional, default: 0): Numarul paginii curente.
+o	sort (String, optional, default: username): Campul dupa care se face sortarea datelor.
+•	Descriere: Returneaza pagina HTML users-list continand colectia paginata de utilizatori extrasa din baza de date Oracle, datele de paginare si un obiect gol de tip User pentru formularul de adaugare.
+1.2. Salvare sau Actualizare Utilizator
+•	URL: /users/save
+•	Metoda HTTP: POST
+•	Corp Cerere (Form Data):
+o	id (Long, optional): ID-ul utilizatorului (daca este prezent, se efectueaza Update; daca este null sau 0, se efectueaza Create).
+o	username (String, required): Numele de utilizator unic.
+o	email (String, required): Adresa de email.
+o	password (String, conditional): Parola contului (obligatorie doar la crearea unui cont nou).
+o	role (String, required): Rolul alocat (USER, ADMIN, COACH).
+o	coachId (Long, optional): ID-ul antrenorului alocat (-1 reprezinta lipsa unui antrenor).
+•	Descriere: Proceseaza datele trimise din formular. Daca utilizatorul este nou, parola este criptata folosind algoritmul BCrypt. Daca este transmisa o valoare valida pentru coachId, sistemul cauta antrenorul si realizeaza maparea. Dupa salvare, se efectueaza o redirectionare catre /users/list.
+1.3. Stergere Utilizator
+•	URL: /users/delete
+•	Metoda HTTP: GET
+•	Parametri Request (Query Params):
+o	userId (Long, required): ID-ul unic al utilizatorului ce urmeaza a fi eliminat.
+•	Descriere: Sterge inregistrarea utilizatorului din baza de date pe baza ID-ului furnizat si redirectioneaza catre lista actualizata.
+2. Modul Planuri Nutritionale (/nutrition)
+2.1. Vizualizare lista planuri
+•	URL: /nutrition/list
+•	Metoda HTTP: GET
+•	Parametri Request (Query Params):
+o	page (int): Pagina curenta.
+o	sortField (String): Proprietatea selectata pentru sortare (name, calories).
+o	sortDir (String): Directia de sortare (asc sau desc).
+•	Descriere: Incarca pagina nutrition-list cu toate planurile nutritionale disponibile, inclusiv numele, caloriile si descrierea/observatiile aferente.
+2.2. Salvare Plan Nutritional
+•	URL: /nutrition/save
+•	Metoda HTTP: POST
+•	Corp Cerere (Form Data):
+o	id (Long, optional): ID-ul planului.
+o	name (String, required): Denumirea planului (ex: Bulk, Low Carb).
+o	calories (int, required): Numarul total de calorii.
+o	description (String, optional): Detalii text sau observatii privind alimentele recomandate.
+•	Descriere: Persista sau actualizeaza planul nutritional in tabela corespunzatoare din baza de date Oracle, apoi redirectioneaza utilizatorul catre /nutrition/list.
+2.3. Stergere Plan Nutritional
+•	URL: /nutrition/delete
+•	Metoda HTTP: GET
+•	Parametri Request (Query Params):
+o	planId (Long, required): ID-ul planului ce trebuie sters.
+•	Descriere: Elimina planul nutritional selectat din sistem.
+3. Modul Antrenori (/coaches)
+3.1. Stergere Antrenor (Cu Validare de Business)
+•	URL: /coaches/delete
+•	Metoda HTTP: GET
+•	Parametri Request (Query Params):
+o	coachId (Long, required): ID-ul antrenorului curent.
+•	Descriere: Inainte de stergere, stratul de business interogheaza relatia cu tabela USERS. Daca lista de clienti asociati antrenorului nu este goala, operatiunea este abandonata si se arunca o exceptie de tipul RuntimeException pentru a proteja integritatea datelor si a preveni existenta inregistrarilor orfane.
+
+
+Arhitectura:
+Arhitectura Aplicatiei (Application Architecture)
+Design-ul arhitectural al platformei software este construit pe principiul separarii responsabilitatilor (Separation of Concerns), utilizand o Arhitectură Stratificată (Layered Architecture) pe 4 niveluri principale, combinata cu sablonul de proiectare MVC (Model-View-Controller).
+Aceasta structura garanteaza o mentenabilitate ridicata, decuplarea componentelor si permite testarea izolata a fiecarei componente logice.
+1. Diagrama Conceptuala a Straturilor (Layers)
+Fluxul de date in cadrul aplicatiei se desfasoara unidirectional, de sus in jos, prin urmatoarele straturi:
+1.	Stratul de Prezentare (View / Frontend): Realizat in Thymeleaf si Bootstrap 5, responsabil doar cu afisarea datelor si capturarea actiunilor utilizatorului (evenimente de click, trimiteri de formulare).
+2.	Stratul de Control (Controller / Routing): Intercepteaza cererile HTTP venite din browser (GET/POST), valideaza parametrii de intrare, apeleaza logica de business si returneaza vederea (View-ul) corespunzatoare.
+3.	Stratul de Business (Service Layer): Contine regulile stricte de functionare ale aplicatiei (coordonarea operatiunilor, validari complexe, aruncarea excepțiilor de business - cum este blocarea stergerii unui antrenor cu clienti).
+4.	Stratul de Persistenta (Data Access Layer / Repository): interactioneaza direct cu baza de date relationala Oracle prin intermediul Spring Data JPA si Hibernate.
+2. Sablonul Model-View-Controller (MVC) in Contextul Spring Boot
+Aplicatia utilizeaza arhitectura MVC pentru a gestiona interactiunile dinamic:
+•	Model: Reprezentat de clasele de tip Entitate (User, Coach, NutritionPlan). Acestea reflecta structura tabelelor din baza de date Oracle si pastreaza starea datelor.
+•	View: Reprezentat de paginile HTML procesate de motorul de sabloane Thymeleaf (users-list.html, nutrition-list.html). Acestea sunt dinamice, randand datele injectate de controller.
+•	Controller: Reprezentat de clasele adnotate cu @Controller (UserViewController, CoachViewController). Rolul lor este de a face legatura intre Model si View.
+3. Securitatea Arhitecturala (Spring Security Layer)
+Un aspect critic al arhitecturii este interceptarea cererilor prin Spring Security. Acesta actioneaza ca un strat de tip filtru (Filter Chain) inainte ca cererea HTTP sa ajunga la Controller:
+•	Autentificare: Verifica identitatea utilizatorului pe baza credentialelor stocate in baza de date. Parolele nu sunt salvate in clar, ci sunt procesate prin filtrul de criptare BCrypt Password Encoder.
+•	Autorizare (RBAC): Restrictionarea accesului la nivel de URL. De exemplu, rutele de tip /users/delete sau /nutrition/save sunt blocate la nivel architectural daca utilizatorul autentificat nu detine autoritatea ADMIN.
+4. Fluxul unei Cereri HTTP (Exemplu Practic)
+Pentru a exemplifica functionarea arhitecturii, parcursul unei actiuni de salvare a unui utilizator (/users/save) urmeaza pasii:
+1.	Client (Browser): Utilizatorul completeaza formularul in fereastra modala din users-list.html si apasa "Salveaza". Browserul trimite o cerere POST catre /users/save.
+2.	Securitate: Spring Security intercepteaza cererea si verifica daca utilizatorul are rolul de ADMIN. Daca da, permite trecerea mai departe.
+3.	Controller: UserViewController receptioneaza datele din formular prin @ModelAttribute si ID-ul antrenorului prin @RequestParam.
+4.	Service: Controllerul apeleaza userService.save(theUser). In acest strat se aplica logica de criptare a parolei (daca userul este nou) si se injecteaza obiectul Coach extras din coachService.
+5.	Repository: UserRepository (interfata ce extinde JpaRepository) apeleaza metoda .save(). Hibernate traduce aceasta actiune intr-o comanda SQL de tip INSERT sau UPDATE si o executa pe baza de date Oracle.
+6.	Raspuns: Controllerul primeste confirmarea succesului si trimite inapoi un raspuns de tip redirect:/users/list, fortand browserul sa reincarce lista actualizata.
+
+                         
+
+                         
+
+
+                         
+                         
