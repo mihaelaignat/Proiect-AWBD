@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestiune Exerciții</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 px-3 shadow">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><i class="fas fa-dumbbell text-info"></i> Fitness Admin</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" th:href="@{/users/list}">Utilizatori</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/profile/list}">Editare Profil</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/coaches/list}">Antrenori</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/workout-groups/list}">Workouts</a></li>
+        <li class="nav-item"><a class="nav-link active" th:href="@{/exercises/list}">Exercitii</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/nutrition/list}">Nutritie</a></li>
+      </ul>
+      <form th:action="@{/logout}" method="post" class="d-flex">
+        <button type="submit" class="btn btn-outline-light btn-sm border-0">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container bg-white p-4 shadow-sm rounded">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3><i class="fas fa-running text-primary"></i> Catalog Exercitii</h3>
+    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/exercises/showFormForAdd}" class="btn btn-success">
+      <i class="fas fa-plus"></i> Adaugă Exercitiu
+    </a>
+  </div>
+
+  <table class="table table-hover border text-center">
+    <thead class="table-dark">
+    <tr>
+      <th>Nume</th>
+      <th>Grupă Musculară</th>
+      <th>Detalii (Seturi x Reps)</th>
+      <th>Durată (sec)</th>
+      <th sec:authorize="hasAuthority('ADMIN')">Acțiuni</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ex : ${exercises}">
+      <td th:text="${ex.name}" class="fw-bold align-middle"></td>
+      <td class="align-middle">
+        <span class="badge bg-info text-dark" th:text="${ex.muscleGroup}"></span>
+      </td>
+      <td class="align-middle">
+        <span th:text="${ex.sets} + ' x ' + ${ex.reps}"></span>
+      </td>
+      <td th:text="${ex.duration}" class="align-middle text-muted"></td>
+      <td class="align-middle" sec:authorize="hasAuthority('ADMIN')">
+        <div class="btn-group">
+          <a th:href="@{/exercises/showFormForUpdate(exerciseId=${ex.id})}" class="btn btn-sm btn-outline-primary">
+            <i class="fas fa-edit"></i>
+          </a>
+          <a th:href="@{/exercises/delete(exerciseId=${ex.id})}"
+             class="btn btn-sm btn-outline-danger"
+             onclick="return confirm('Stergi exercitiul?')">
+            <i class="fas fa-trash"></i>
+          </a>
+        </div>
+      </td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(exercises)}">
+      <td colspan="5" class="text-muted py-4">Nu există exercitii inregistrate.</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <nav th:if="${totalPages > 1}">
+    <ul class="pagination justify-content-center mt-3">
+      <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+        <a class="page-link" th:href="@{/exercises/list(page=${currentPage - 1})}">Inapoi</a>
+      </li>
+      <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+          th:classappend="${currentPage == i} ? 'active'">
+        <a class="page-link" th:href="@{/exercises/list(page=${i})}" th:text="${i + 1}"></a>
+      </li>
+      <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+        <a class="page-link" th:href="@{/exercises/list(page=${currentPage + 1})}">Inainte</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+</body>
+</html>
