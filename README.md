@@ -10,7 +10,7 @@ Cerințe: Lab2
 Criterii evaluare:
 •	Complexitate model de date
 •	Relevanța relațiilor pentru domeniul ales
-•	Documentație
+•	Documentatie
 
 
 
