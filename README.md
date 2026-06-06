@@ -12,9 +12,6 @@ Criterii evaluare:
 •	Relevanța relațiilor pentru domeniul ales
 •	Documentatie
 
-
-
- 
 Coach: 
 
 package com.fitness.opp.models;
