@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fe1cb5b3-adf0-4a22-a2a4-da0a8204013e" name="Changes" comment=" done">
+      <change beforePath="$PROJECT_DIR$/logs/app.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/app.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/errors.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/errors.log" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="3BcYysoqZ0E5BOyHzvyrHAusRKq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JUnit.All in opp.executor": "Debug",
+    "JUnit.CoachIntegrationTest.executor": "Coverage",
+    "JUnit.CoachViewControllerTest.executor": "Coverage",
+    "JUnit.ExerciseIntegrationTest.executor": "Coverage",
+    "JUnit.NutritionPlanIntegrationTest.executor": "Coverage",
+    "JUnit.NutritionPlanServiceTest.executor": "Coverage",
+    "JUnit.OppApplicationTests.executor": "Coverage",
+    "JUnit.UserIntegrationTest.executor": "Coverage",
+    "JUnit.UserProfileControllerTest.executor": "Coverage",
+    "JUnit.UserProfileServiceTest.executor": "Coverage",
+    "JUnit.WorkoutGroupIntegrationTest.executor": "Coverage",
+    "JUnit.java in opp.executor": "Coverage",
+    "JUnit.opp in opp.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.OppApplication.executor": "Coverage",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Dunduc George/Desktop/fitness/opp",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RunManager" selected="JUnit.All in opp">
+    <configuration name="All in opp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="opp" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CoachViewControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="opp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fitness.opp.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.fitness.opp.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.fitness.opp.controller.CoachViewControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExerciseIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="opp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fitness.opp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.fitness.opp" />
+      <option name="MAIN_CLASS_NAME" value="com.fitness.opp.ExerciseIntegrationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="opp in opp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="opp" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/com/fitness/opp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="opp" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.fitness.opp.OppApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fitness.opp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in opp" />
+        <item itemvalue="JUnit.opp in opp" />
+        <item itemvalue="Spring Boot.OppApplication" />
+        <item itemvalue="JUnit.CoachViewControllerTest" />
+        <item itemvalue="JUnit.ExerciseIntegrationTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fe1cb5b3-adf0-4a22-a2a4-da0a8204013e" name="Changes" comment="" />
+      <created>1774790097184</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1774790097184</updated>
+    </task>
+    <task id="LOCAL-00001" summary=" done">
+      <option name="closed" value="true" />
+      <created>1775312895893</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1775312895893</updated>
+    </task>
+    <task id="LOCAL-00002" summary=" done">
+      <option name="closed" value="true" />
+      <created>1775313269630</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1775313269630</updated>
+    </task>
+    <task id="LOCAL-00003" summary=" done">
+      <option name="closed" value="true" />
+      <created>1775387437237</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1775387437237</updated>
+    </task>
+    <task id="LOCAL-00004" summary=" done">
+      <option name="closed" value="true" />
+      <created>1775388073670</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1775388073670</updated>
+    </task>
+    <task id="LOCAL-00005" summary=" done">
+      <option name="closed" value="true" />
+      <created>1775396711141</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1775396711141</updated>
+    </task>
+    <task id="LOCAL-00006" summary=" done">
+      <option name="closed" value="true" />
+      <created>1775396717582</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1775396717582</updated>
+    </task>
+    <task id="LOCAL-00007" summary=" done">
+      <option name="closed" value="true" />
+      <created>1775397443634</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1775397443634</updated>
+    </task>
+    <task id="LOCAL-00008" summary=" done">
+      <option name="closed" value="true" />
+      <created>1775397502869</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1775397502869</updated>
+    </task>
+    <task id="LOCAL-00009" summary=" done">
+      <option name="closed" value="true" />
+      <created>1775398798855</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1775398798855</updated>
+    </task>
+    <task id="LOCAL-00010" summary=" done">
+      <option name="closed" value="true" />
+      <created>1775399549653</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1775399549653</updated>
+    </task>
+    <task id="LOCAL-00011" summary=" done">
+      <option name="closed" value="true" />
+      <created>1775403830455</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1775403830455</updated>
+    </task>
+    <task id="LOCAL-00012" summary=" done">
+      <option name="closed" value="true" />
+      <created>1775404058927</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1775404058927</updated>
+    </task>
+    <task id="LOCAL-00013" summary=" done">
+      <option name="closed" value="true" />
+      <created>1775404290137</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1775404290137</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=" done" />
+    <option name="LAST_COMMIT_MESSAGE" value=" done" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/opp$ExerciseIntegrationTest.ic" NAME="ExerciseIntegrationTest Coverage Results" MODIFIED="1775404040402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.fitness.opp.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/opp$java_in_opp.ic" NAME="java in opp Coverage Results" MODIFIED="1775387630988" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/opp$NutritionPlanServiceTest.ic" NAME="NutritionPlanServiceTest Coverage Results" MODIFIED="1775398580029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.fitness.opp.services.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/opp$WorkoutGroupIntegrationTest.ic" NAME="WorkoutGroupIntegrationTest Coverage Results" MODIFIED="1775390167659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.fitness.opp.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/opp$NutritionPlanIntegrationTest.ic" NAME="NutritionPlanIntegrationTest Coverage Results" MODIFIED="1775390069147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.fitness.opp.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/opp$UserIntegrationTest.ic" NAME="UserIntegrationTest Coverage Results" MODIFIED="1775388461482" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.fitness.opp.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/opp$CoachViewControllerTest.ic" NAME="CoachViewControllerTest Coverage Results" MODIFIED="1775404270480" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.fitness.opp.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/opp$All_in_opp.ic" NAME="All in opp Coverage Results" MODIFIED="1775404316209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/opp$UserProfileControllerTest.ic" NAME="UserProfileControllerTest Coverage Results" MODIFIED="1775397897405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.fitness.opp.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/opp$CoachIntegrationTest.ic" NAME="CoachIntegrationTest Coverage Results" MODIFIED="1775388734564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.fitness.opp.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/opp$OppApplicationTests.ic" NAME="OppApplicationTests Coverage Results" MODIFIED="1775388367185" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.fitness.opp.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/opp$UserProfileServiceTest.ic" NAME="UserProfileServiceTest Coverage Results" MODIFIED="1775398507445" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.fitness.opp.services.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/opp$OppApplication.ic" NAME="OppApplication Coverage Results" MODIFIED="1776877825613" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.fitness.opp.*</FILTER>
+    </SUITE>
+  </component>
+</project>
