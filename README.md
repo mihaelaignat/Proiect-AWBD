@@ -1,7 +1,7 @@
-PARTEA I: CERINȚE OBLIGATORII (60%)
+PARTEA I: CERINTE OBLIGATORII (60%)
 1. Model de Date (10%) 
 Cerințe: Lab2
-•	Minimum 6-7 entități interconectate
+•	Minimum 6-7 entitati interconectate
 •	Relații de toate tipurile:
 - @OneToOne (min. 1 exemplu)
 - @OneToMany / @ManyToOne (min. 2 exemple)
