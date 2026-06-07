@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestiune Utilizatori</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 px-3 shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><i class="fas fa-dumbbell text-info"></i> Fitness Admin</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link active" th:href="@{/users/list}">Utilizatori</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/profile/list}">Editare Profil</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/coaches/list}">Antrenori</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/workout-groups/list}">Workouts</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/exercises/list}">Exercitii</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/nutrition/list}">Nutritie</a></li>
+            </ul>
+            <form th:action="@{/logout}" method="post" class="d-flex">
+                <button type="submit" class="btn btn-outline-light btn-sm border-0"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container bg-white p-4 shadow-sm rounded">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3><i class="fas fa-users text-primary"></i> Membri Sistem</h3>
+        <button sec:authorize="hasAuthority('ADMIN')" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUserModal">
+            <i class="fas fa-plus"></i> Adauga Utilizator
+        </button>
+    </div>
+
+    <table class="table table-hover border text-center">
+        <thead class="table-dark">
+        <tr>
+            <th><a class="text-white text-decoration-none" th:href="@{/users/list(page=${currentPage}, sort='username')}">Username <i class="fas fa-sort"></i></a></th>
+            <th><a class="text-white text-decoration-none" th:href="@{/users/list(page=${currentPage}, sort='email')}">Email <i class="fas fa-sort"></i></a></th>
+            <th>Rol</th>
+            <th>Antrenor</th>
+            <th sec:authorize="hasAuthority('ADMIN')">Actiuni</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tempUser : ${users}">
+            <td th:text="${tempUser.username}" class="fw-bold align-middle"></td>
+            <td th:text="${tempUser.email}" class="align-middle"></td>
+            <td class="align-middle"><span class="badge bg-secondary" th:text="${tempUser.role}"></span></td>
+            <td th:text="${tempUser.coach != null} ? ${tempUser.coach.name} : 'Fara Antrenor'" class="align-middle text-muted"></td>
+            <td class="align-middle" sec:authorize="hasAuthority('ADMIN')">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" th:data-bs-target="'#editModal' + ${tempUser.id}"><i class="fas fa-edit"></i></button>
+                    <a th:href="@{/users/delete(userId=${tempUser.id})}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Stergi utilizatorul?')"><i class="fas fa-trash"></i></a>
+                </div>
+
+                <div class="modal fade" th:id="'editModal' + ${tempUser.id}" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog text-start"><div class="modal-content">
+                        <div class="modal-header bg-primary text-white"><h5 class="modal-title">Editeaza Utilizator</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+                        <form th:action="@{/users/save}" method="POST">
+                            <div class="modal-body">
+                                <input type="hidden" name="id" th:value="${tempUser.id}" />
+                                <div class="mb-3"><label class="form-label">Username</label><input type="text" name="username" th:value="${tempUser.username}" class="form-control" required></div>
+                                <div class="mb-3"><label class="form-label">Email</label><input type="email" name="email" th:value="${tempUser.email}" class="form-control" required></div>
+                                <div class="mb-3">
+                                    <label class="form-label">Rol</label>
+                                    <select name="role" class="form-select">
+                                        <option value="USER" th:selected="${tempUser.role == 'USER'}">USER</option>
+                                        <option value="ADMIN" th:selected="${tempUser.role == 'ADMIN'}">ADMIN</option>
+                                        <option value="COACH" th:selected="${tempUser.role == 'COACH'}">COACH</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Antrenor Asociat</label>
+                                    <select name="coachId" class="form-select">
+                                        <option th:value="-1">--- Fara Antrenor ---</option>
+                                        <option th:each="tempCoach : ${coaches}"
+                                                th:value="${tempCoach.id}"
+                                                th:text="${tempCoach.name}"
+                                                th:selected="${tempUser.coach != null && tempUser.coach.id == tempCoach.id}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer"><button type="submit" class="btn btn-primary">Salveaza Modificari</button></div>
+                        </form>
+                    </div></div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <nav th:if="${totalPages > 1}">
+        <ul class="pagination justify-content-center mt-3">
+            <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'"><a class="page-link" th:href="@{/users/list(page=${currentPage - 1}, sort=${sortField})}">Inapoi</a></li>
+            <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}" th:classappend="${currentPage == i} ? 'active'"><a class="page-link" th:href="@{/users/list(page=${i}, sort=${sortField})}" th:text="${i + 1}"></a></li>
+            <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'"><a class="page-link" th:href="@{/users/list(page=${currentPage + 1}, sort=${sortField})}">Inainte</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog text-start"><div class="modal-content">
+        <div class="modal-header bg-success text-white"><h5 class="modal-title">Adauga Utilizator Nou</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+        <form th:action="@{/users/save}" th:object="${newUser}" method="POST">
+            <div class="modal-body">
+                <div class="mb-3"><label class="form-label">Username</label><input type="text" th:field="*{username}" class="form-control" required></div>
+                <div class="mb-3"><label class="form-label">Email</label><input type="email" th:field="*{email}" class="form-control" required></div>
+                <div class="mb-3"><label class="form-label">Parola</label><input type="password" th:field="*{password}" class="form-control" required></div>
+                <div class="mb-3">
+                    <label class="form-label">Rol</label>
+                    <select th:field="*{role}" class="form-select">
+                        <option value="USER">USER</option>
+                        <option value="ADMIN">ADMIN</option>
+                        <option value="COACH">COACH</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Antrenor Asociat</label>
+                    <select name="coachId" class="form-select">
+                        <option th:value="-1">--- Fara Antrenor ---</option>
+                        <option th:each="tempCoach : ${coaches}"
+                                th:value="${tempCoach.id}"
+                                th:text="${tempCoach.name}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer"><button type="submit" class="btn btn-success">Creeaza Cont</button></div>
+        </form>
+    </div></div>
+</div>
+
+</body>
+</html>

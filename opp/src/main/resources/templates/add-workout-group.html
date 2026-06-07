@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Salvare Grup Workout</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+<div class="row justify-content-center">
+    <div class="col-md-6 border p-4 shadow rounded bg-light">
+        <h3 class="mb-4 text-center" th:text="${group.id == null} ? 'Adauga Grup Nou' : 'Editeaza Grup'"></h3>
+        <form th:action="@{/workout-groups/save}" th:object="${group}" method="POST">
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="mb-3">
+                <label class="form-label">Nume Grup:</label>
+                <input type="text" th:field="*{name}" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Categorie:</label>
+                <input type="text" th:field="*{category}" class="form-control" placeholder="ex: Forta, Cardio" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Descriere:</label>
+                <textarea th:field="*{description}" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary px-5">Salveaza</button>
+                <a th:href="@{/workout-groups/list}" class="btn btn-secondary">Anuleaza</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestiune Planuri Nutritionale</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 px-3 shadow">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><i class="fas fa-dumbbell text-info"></i> Fitness Admin</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" th:href="@{/users/list}">Utilizatori</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/profile/list}">Editare Profil</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/coaches/list}">Antrenori</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/workout-groups/list}">Workouts</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/exercises/list}">Exercitii</a></li>
+        <li class="nav-item"><a class="nav-link active" th:href="@{/nutrition/list}">Nutritie</a></li>
+      </ul>
+      <form th:action="@{/logout}" method="post" class="d-flex">
+        <button type="submit" class="btn btn-outline-light btn-sm border-0">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container bg-white p-4 shadow-sm rounded">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3><i class="fas fa-apple-whole text-success"></i> Planuri Nutritionale</h3>
+    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/nutrition/showFormForAdd}" class="btn btn-success">
+      <i class="fas fa-plus"></i> Adauga Plan
+    </a>
+  </div>
+
+  <table class="table table-hover border text-center">
+    <thead class="table-dark">
+    <tr>
+      <th><a class="text-white text-decoration-none" th:href="@{/nutrition/list(page=${currentPage}, sortField='name', sortDir=${reverseSortDir})}">Nume <i class="fas fa-sort"></i></a></th>
+      <th><a class="text-white text-decoration-none" th:href="@{/nutrition/list(page=${currentPage}, sortField='calories', sortDir=${reverseSortDir})}">Calorii <i class="fas fa-sort"></i></a></th>
+      <th>Descriere</th>
+      <th sec:authorize="hasAuthority('ADMIN')">Actiuni</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="plan : ${plans}">
+      <td th:text="${plan.name}" class="fw-bold align-middle"></td>
+      <td th:text="${plan.calories}" class="align-middle"></td>
+      <td th:text="${plan.description}" class="align-middle text-start text-muted"></td>
+      <td class="align-middle" sec:authorize="hasAuthority('ADMIN')">
+        <a th:href="@{/nutrition/showFormForUpdate(planId=${plan.id})}" class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></a>
+        <a th:href="@{/nutrition/delete(planId=${plan.id})}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Stergi planul?')"><i class="fas fa-trash"></i></a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <nav th:if="${totalPages > 1}">
+    <ul class="pagination justify-content-center mt-3">
+      <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'"><a class="page-link" th:href="@{/nutrition/list(page=${currentPage - 1}, sortField=${sortField}, sortDir=${sortDir})}">Inapoi</a></li>
+      <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}" th:classappend="${currentPage == i} ? 'active'"><a class="page-link" th:href="@{/nutrition/list(page=${i}, sortField=${sortField}, sortDir=${sortDir})}" th:text="${i + 1}"></a></li>
+      <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'"><a class="page-link" th:href="@{/nutrition/list(page=${currentPage + 1}, sortField=${sortField}, sortDir=${sortDir})}">Inainte</a></li>
+    </ul>
+  </nav>
+</div>
+</body>
+</html>
